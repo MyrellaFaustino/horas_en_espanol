@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora en Español</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        color: #a3a3a3;
+        text-align: center;
+        padding: 10px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Convertir las horas al Español</h1>
+    <label>Hora (0-12):</label>
+    <input type="number" id="hora" min="0" max="12">
+    <label>Minutos (0-59):</label>
+    <input type="number" id="minutos" min="0" max="59">
+    <button onclick="convertirHora()">Convertir</button>
+    <p id="resultado"></p>
+
+    <footer><p>Feito com &#10084; by Myrella Faustino</p></footer>
+    
+
+    <script>
+        function convertirHora() {
+            let h = parseInt(document.getElementById("hora").value);
+            let min = parseInt(document.getElementById("minutos").value);
+            let resultado = document.getElementById("resultado");
+            
+            if (h > 12 || h < 0 || min > 59 || min < 0) {
+                resultado.innerText = "Hora inválida :(";
+                return;
+            }
+
+            let horas = ["medianoche", "una", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "una"];
+            let texto = "";
+
+            if (h == 0 || h == 1) {
+
+                if (min >= 0 && min < 5) {
+                    if (min == 0) {
+                        texto += `Es la ${horas[h]} en punto`;
+                    } else {
+                        texto += `Es la ${horas[h]} en punto passada\nEs casi la ${horas[h]} y cinco`;
+                    }
+                }
+                
+                if (min >= 5 && min < 10) {
+                    if (min == 5) {
+                        texto += `Es la ${horas[h]} y cinco`;
+                    } else {
+                        texto += `Es casi la ${horas[h]} y diez\nEs la ${horas[h]} y cinco pasada`;
+                    }
+                }
+                
+                if (min >= 10 && min < 15) {
+                    if (min == 10) {
+                        texto += `Es la ${horas[h]} y diez`;
+                    } else {
+                        texto += `Es casi la ${horas[h]} y cuarto\nEs la ${horas[h]} y diez pasada`;
+                    }
+                }
+                
+                if (min >= 15 && min < 20) {
+                    if (min == 15) {
+                        texto += `Es la ${horas[h]} y cuarto`;
+                    } else {
+                        texto += `Es casi la ${horas[h]} y veinte\nEs la ${horas[h]} y cuarto pasada`;
+                    }
+                }
+                
+                if (min >= 20 && min < 25) {
+                    if (min == 20) {
+                        texto += `Es la ${horas[h]} y veinte`;
+                    } else {
+                        texto += `Es casi la ${horas[h]} y veinticinco\nEs la ${horas[h]} y veinte pasada`;
+                    }
+                }
+                
+                if (min >= 25 && min < 30) {
+                    if (min == 25) {
+                        texto += `Es la ${horas[h]} y veinticinco`;
+                    } else {
+                        texto += `Es casi la ${horas[h]} y media\nEs la ${horas[h]} y veinticinco pasada`;
+                    }
+                }
+
+                if (min >= 30 && min < 35) {
+                    if (min == 30) {
+                        texto += `Es la ${horas[h]} y media`;
+                    } else if (h == 1) {
+                        texto += `Son casi las ${horas[h+1]} menos veinticinco\nEs la ${horas[h]} y media pasada`;
+                    }else {
+                        texto += `Es casi la ${horas[h+1]} menos veinticinco\nEs la ${horas[h]} y media pasada`;
+                    }
+                }
+
+                if (min >= 35 && min < 40) {
+                    if (min == 35) {
+                        if(h == 1) {
+                            texto += `Son las ${horas[h+1]} menos veinticinco`;
+                        } else {
+                            texto += `Es la ${horas[h+1]} menos veinticinco`;
+                        }
+                    }
+                    else if(h == 1) {
+                        texto += `Son casi las ${horas[h+1]} menos veinte\nSon las ${horas[h+1]} menos veinticinco pasada`;
+                    } else {
+                        texto += `Es casi la ${horas[h+1]} menos veinte\nEs la ${horas[h+1]} menos veinticinco pasada`;
+                    }
+                }
+
+                if (min >= 40 && min < 45) {
+                    if (min == 40) {
+                        if(h == 1) {
+                            texto += `Son las ${horas[h+1]} menos veinte`;
+                        } else {
+                            texto += `Es la ${horas[h+1]} menos veinte`;
+                        }
+                    }else if(h == 1) {
+                        texto += `Son casi las ${horas[h+1]} menos cuarto\nSon las ${horas[h+1]} menos veinte pasada`;
+                    } else {
+                        texto += `Es casi la ${horas[h+1]} menos cuarto\nEs la ${horas[h+1]} menos veinte pasada`;
+                    }
+                }
+
+                if (min >= 45 && min < 50) {
+                    if (min == 45) {
+                        if(h == 1) {
+                            texto += `Son las ${horas[h+1]} menos cuarto`;
+                        } else {
+                            texto += `Es la ${horas[h+1]} menos cuarto`;
+                        }
+                    }else if(h == 1) {
+                        texto += `Son casi las ${horas[h+1]} menos diez\nEs la ${horas[h+1]} menos cuarto pasada`;
+                    } else {
+                        texto += `Es casi la ${horas[h+1]} menos diez\nEs la ${horas[h+1]} menos cuarto pasada`;
+                    }
+                }
+
+                if (min >= 50 && min < 55) {
+                    if (min == 50) {
+                        if(h == 1) {
+                            texto += `Son las ${horas[h+1]} menos diez`;
+                        } else {
+                            texto += `Es la ${horas[h+1]} menos diez`;
+                        }
+                    }else if(h == 1) {
+                        texto += `Son casi las ${horas[h+1]} menos cinco\nEs la ${horas[h+1]} menos diez pasada`;
+                    } else {
+                        texto += `Es casi la ${horas[h+1]} menos cinco\nEs la ${horas[h+1]} menos diez pasada`;
+                    }
+                }
+
+                if (min >= 55) {
+                    if(min == 55) {
+                        if(h == 1) {
+                            texto += `Son las ${horas[h+1]} menos cinco`;
+                        } else {
+                            texto += `Es la ${horas[h+1]} menos cinco`;
+                        }
+                    }
+                    else if(h == 1) {
+                        texto += `Son casi las ${horas[h+1]}\nEs la ${horas[h+1]} menos cinco pasada`;
+                    }else {
+                        texto += `Es casi la ${horas[h+1]}\nEs la ${horas[h+1]} menos cinco pasada`;
+                    }
+                }
+
+            } else {
+
+                if (min >= 0 && min < 5) {
+                    if (min == 0) {
+                        texto += `Son las ${horas[h]} en punto`;
+                    } else {
+                        texto += `Son las ${horas[h]} en punto pasada\nSon casi las ${horas[h]} y cinco`;
+                    }
+                }
+                
+                if (min >= 5 && min < 10) {
+                    if (min == 5) {
+                        texto += `Son las ${horas[h]} y cinco`;
+                    } else {
+                        texto += `Son casi las ${horas[h]} y diez\nSon las ${horas[h]} y cinco pasada`;
+                    }
+                }
+                
+                if (min >= 10 && min < 15) {
+                    if (min == 10) {
+                        texto += `Son las ${horas[h]} y diez`;
+                    } else {
+                        texto += `Son casi las ${horas[h]} y cuarto\nSon las ${horas[h]} y diez pasada`;
+                    }
+                }
+
+                if (min >= 15 && min < 20) {
+                    if (min == 15) {
+                        texto += `Son las ${horas[h]} y cuarto`;
+                    } else {
+                        texto += `Son casi las ${horas[h]} y veinte\nSon las ${horas[h]} y cuarto pasada`;
+                    }
+                }
+                
+                if (min >= 20 && min < 25) {
+                    if (min == 20) {
+                        texto += `Son las ${horas[h]} y veinte`;
+                    } else {
+                        texto += `Son casi las ${horas[h]} y veinticinco\nSon las ${horas[h]} y veinte pasada`;
+                    }
+                }
+
+                if (min >= 25 && min < 30) {
+                    if (min == 25) {
+                        texto += `Son las ${horas[h]} y veinticinco`;
+                    } else {
+                        texto += `Son casi las ${horas[h]} y media\nSon las ${horas[h]} y veinticinco pasada`;
+                    }
+                }
+                
+                if (min >= 30 && min < 35) {
+                    if (min == 30) {
+                        texto += `Son las ${horas[h]} y media`;
+                    }
+                    else if(h == 12) {
+                        texto += `Es casi la ${horas[h+1]} menos veinticinco\nSon las ${horas[h]} y media pasada`;
+                    }else {
+                        texto += `Son casi las ${horas[h+1]} menos veinticinco\nSon las ${horas[h]} y media pasada`;
+                    }
+                }
+
+                if (min >= 35 && min < 40) {
+                    if (min == 35) {
+                        if(h == 12) {
+                            texto += `Es la ${horas[h+1]} menos veinticinco`;
+                        } else {
+                            texto += `Son las ${horas[h+1]} menos veinticinco`;
+                        }
+                    } else {
+                        texto += `Son casi las ${horas[h+1]} menos veinte\nSon las ${horas[h+1]} menos veinticinco pasada`;
+                    }
+                }
+
+                if (min >= 40 && min < 45) {
+                    if (min == 40) {
+                        if(h == 12) {
+                            texto += `Es la ${horas[h+1]} menos veinte`;
+                        } else {
+                            texto += `Son las ${horas[h+1]} menos veinte`;
+                        }
+                    } else {
+                        texto += `Son casi las ${horas[h+1]} menos cuarto\nSon las ${horas[h+1]} menos veinte pasada`;
+                    }
+                }
+
+                if (min >= 45 && min < 50) {
+                    if (min == 45) {
+                        if(h == 12) {
+                            texto += `Es la ${horas[h+1]} menos cuarto`;
+                        } else {
+                            texto += `Son las ${horas[h+1]} menos cuarto`;
+                        }
+                    } else {
+                        texto += `Son casi las ${horas[h+1]} menos diez\nSon las ${horas[h+1]} menos cuarto pasada`;
+                    }
+                }
+
+                if (min >= 50 && min < 55) {
+                    if (min == 50) {
+                        if(h == 12) {
+                            texto += `Es la ${horas[h+1]} menos diez`;
+                        } else {
+                            texto += `Son las ${horas[h+1]} menos diez`;
+                        }
+                    } else {
+                        if(h == 12) {
+                            texto += `Es casi la ${horas[h+1]} menos cinco\nSon las ${horas[h+1]} menos diez pasada`;
+                        } else {
+                            texto += `Son casi las ${horas[h+1]} menos cinco\nSon las ${horas[h+1]} menos diez pasada`;
+                        }
+                    }
+                }
+
+                if (min >= 55) {
+                    if(min == 55) {
+                        if(h == 12) {
+                            texto += `Es la ${horas[h+1]} menos cinco`;
+                        } else {
+                            texto += `Son las ${horas[h+1]} menos cinco`;
+                        }
+                    }else {
+                        if(h == 12) {
+                            texto += `Es casi la ${horas[h+1]} en punto\nEs la ${horas[h+1]} menos cinco pasada`;
+                        } else {
+                            texto += `Son casi las ${horas[h+1]}\nSon las ${horas[h+1]} menos cinco pasada`;
+                        }
+                    }
+                }
+            }
+
+            resultado.innerText = texto;
+        }
+    </script>
+</body>
+</html>
